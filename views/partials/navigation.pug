@@ -1,12 +1,9 @@
 nav.navigation
   .navigation-wrapper
-    a.navigation-link(href="/")
-      | Floema 
+    a.navigation-link(href="/")=meta.data.title
 
       svg.navigation-link-icon
     ul.navigation-list
+    each item in navigation.data.list
       li.navigation-list-item
-        a.navigation-list-link(href="/about") About 
-
-      li.navigation-list-item
-        a.navigation-list-link(href="/collections") Collections 
+        a.navigation-list-link(href=Link(item.link))=item.text 
