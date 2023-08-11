@@ -1,3 +1,21 @@
-.class{
-  color: white;
-}
+@import "./utils/variables";
+@import "./utils/functions";
+@import "./utils/mixins";
+@import "./utils/vendors";
+@import "./utils/responsive.scss";
+
+@import "./shared/titles.scss";
+@import "./shared/descriptions.scss";
+
+@import "./base/fonts.scss";
+@import "./base/reset";
+@import "./base/base.scss";
+
+@import "./pages/about/about";
+@import "./pages/about/gallery";
+@import "./pages/about/content";
+@import "./pages/about/highlight";
+
+@import "./pages/collections/collections";
+@import "./pages/details/details";
+@import "./pages/home/home";
