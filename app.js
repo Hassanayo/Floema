@@ -19,6 +19,8 @@ app.use(express.static(path.join(__dirname, "public")));
 
 const Prismic = require("@prismicio/client");
 const PrismicDOM = require("prismic-dom");
+// const PrismicH = require('@prismicio/helpers');
+// const fetch = require('node-fetch');
 
 const initApi = (req) => {
   return Prismic.getApi(process.env.PRISMIC_ENDPOINT, {
@@ -93,6 +95,7 @@ app.get("/about", async (req, res) => {
   const api = await initApi(req);
   const about = await api.getSingle("about");
   const defaults = await handleRequest(api);
+  console.log(about.data.body);
   res.render("pages/about", {
     about,
     ...defaults,
@@ -102,11 +105,13 @@ app.get("/about", async (req, res) => {
 app.get("/detail/:uid", async (req, res) => {
   const api = await initApi(req);
   const defaults = await handleRequest(api);
+  const home = await api.getSingle("home");
   const product = await api.getByUID("product", req.params.uid, {
     fetchLinks: "collection.title",
   });
   res.render("pages/detail", {
     product,
+    home,
     ...defaults,
   });
 });
@@ -121,6 +126,7 @@ app.get("/collections", async (req, res) => {
       fetchLinks: "product.image",
     }
   );
+  console.log(collections)
   res.render("pages/collections", {
     home,
     collections,

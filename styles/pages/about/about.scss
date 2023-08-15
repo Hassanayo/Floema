@@ -1,14 +1,20 @@
 .about {
+  background-color: $color-cadet-blue;
+  color: $color-bright-grey;
+  
 }
 .about_wrapper {
-}
-.about_gallery {
-}
-.about_gallery_wrapper {
-}
-.about_gallery_media {
-}
-.about_gallery_media_image {
+  padding-top: 10rem
+  
 }
 .about_title {
+  @extend %title-100;
+
+  max-width: 126rem;
+  margin: 0 auto;
+  text-align: center;
+
+  @include media('<phone') {
+    max-width: 67.7rem;
+  }
 }

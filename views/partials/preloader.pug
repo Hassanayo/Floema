@@ -1,4 +1,5 @@
 .preloader
-  p.preloader-text=preloader.data.title
-  
-  .preloader-number 0%
+  p.preloader_text!=preloader.data.title.replace(/\n/g, '<br>')
+
+    .preloader_number 
+      .preloader_number_text 0%

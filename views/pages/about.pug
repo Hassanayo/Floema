@@ -4,7 +4,7 @@ block variables
   - var template  = "about"
 
 block content
-  .about 
+  .about(data-background="#b2b8c3" data-color="#37384c")
     .about_wrapper
       section.about_gallery
         .about_gallery_wrapper
@@ -14,24 +14,26 @@ block content
 
       each section in about.data.body
         if section.slice_type == "title"
-          h2.about_title=section.primary.text
+          h2.about_title!=section.primary.text.replace(/\n/g, '<br>')
 
         if section.slice_type == "content"
-          section.about_content
+          section.about_content(class=`${section.primary.type === 'Left' ? 'about_content-left' : 'about_content-right' }`)
             .about_content_wrapper
-              p.about_content_label=section.primary.label
+              .about_content_box
+                p.about_content_label!=section.primary.label
 
-              .about_content_description!=PrismicDOM.RichText.asHtml(section.primary.description)
+                .about_content_description!=PrismicDOM.RichText.asHtml(section.primary.description)
 
-              figure.about_content_media 
-                img.about_content_media_image(alt=section.primary.image.alt src=section.primary.image.url)
+            figure.about_content_media 
+              img.about_content_media_image(alt=section.primary.image.alt src=section.primary.image.url)
         
         if section.slice_type == "highlight"
           section.about_highlight 
             .about_highlight_wrapper
               if section.primary.label
-                p.about_highlight_label=section.primary.label    
-              h3.about_highlight_title=section.primary.title
+                p.about_highlight_label=section.primary.label
+
+              p.about_highlight_title=section.primary.title1
 
               each media in section.items
                 figure.about_highlight_media
@@ -43,4 +45,3 @@ block content
               each media in section.items
                 figure.about_gallery_media
                   img.about_gallery_media_image(alt=media.image.alt src=media.image.url)
-                  p=media.image
